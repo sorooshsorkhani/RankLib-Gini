@@ -7,9 +7,10 @@ import xml.etree.ElementTree as ET
 # First, making the dataset from training data
 
 num_features = int(input("number of features used in the dataset: "))  # number of features you have in your data
-dataset_file = open(input("path_to_training_data\data.txt: "))  # the training data used for the ranklib model
-path2model = input("path_to_model\model: ")  # the random forests model saved by RankLib
+dataset_file = open(input("path_to_training_data\data.txt: "))  # the data used for training the ranklib model
+path2model = input("path_to_model\model.txt: ")  # the random forests model saved by RankLib
 path2trees = input("Trees_directory: ")  # the directory that trees will be saved
+gini_file_name = input("output file (e.g. gini.txt): ")  # choose a name or directory(optional) for the output
 
 
 training_dataset = dict()
@@ -17,9 +18,8 @@ match_list = dataset_file.readlines().copy()
 d=0
 for m in range(len(match_list)):
     q = match_list[m].strip().split(" ")[1][4:]  # q is a query
-    #d = match_list[m].strip().split(" ")[-1][8:]  # d is a document, if you don't have document id in your dataset, comment this line and uncomment the next line
-    d += 1
-    id = (q, str(d))
+    d += 1  # d is assigned to a document
+    id = (q, str(d))  # combination of a query and a document is a record (match) in the dataset
     label = match_list[m].strip().split(" ")[0]  # the rank label/score
     training_dataset[id] = dict()
     training_dataset[id]["label"] = label
@@ -176,7 +176,7 @@ for i in range(300):
             node = node_dict[node]["parent_node"]
             continue
 
-print("Processing ", how_many_trees, " trees are done.\n")
+print("Processing trees are done.\n")
 
 
 
@@ -186,6 +186,8 @@ features_list = list() #  this is the list of used features
 for f in importance.keys():
     features_list.append(int(f))
 
+
+gini_file = open(gini_file_name, "w")
 feature_importance = dict()
 for feature in sorted(features_list):
     feature = str(feature)
@@ -197,4 +199,7 @@ for feature in sorted(features_list):
 
     feature_importance[feature] = numerator/denominator
 
-    print("gini importance of feature ", feature, " is ", feature_importance[feature])
+    gini_file.write(feature + "\t" + str(feature_importance[feature]) + "\n")
+
+gini_file.close()
+print("gini file is ready")
