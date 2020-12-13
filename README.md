@@ -7,16 +7,31 @@ Gini importance of a feature is, on the other hand, more commonly used and accep
 
 ## How to use
 
-Input:
+You can simply run the code in terminal by:
+     
+     python Gini.py
 
-    1- training data used as input for Ranklib (.txt file)
+It will ask you for input:
+
+    number of features used in the dataset:
+
+Number of features you have in your dataset. Note that number of features existing in the dataset may differ from the features used in the model (i.e. not all the features necessarily used in the model).
+
+
+    path_to_training_data\data.txt:
+
+The data used for training the ranklib model
       
-    2- random forests trained by Ranklib (.txt file)
-      
-    3- number of features you have in your data (num_features = n) (integer)
+    path_to_model\model.txt:
     
-Note that number of features existing in the dataset may differ from the features used in the model (i.e. not all the features necessarily used in the model).
+The random forests model saved by RankLib
+    
+    Trees_directory:
 
-Output:
+The directory that trees will be saved
 
-    1- prints the gini importance for each feature
+    output file name (e.g. gini.txt):
+    
+Choose a name or directory(optional) for the output
+
+
