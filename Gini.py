@@ -26,7 +26,7 @@ for m in range(len(match_list)):
 
 # Read the model and separate trees in xml files
 
-path2model = "model.txt"
+path2model = "model.txt"  # the random forests model saved by RankLib
 model_file = open(path2model)
 model_lines = model_file.readlines().copy()
 i = 0
