@@ -4,21 +4,11 @@ import math
 import xml.etree.ElementTree as ET
 
 
-def save_obj(obj, name):
-    with open('gini_obj/' + name + '.pkl', 'wb') as f:
-        pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
-
-
-def load_obj(name):
-    with open('gini_obj/' + name + '.pkl', 'rb') as f:
-        return pickle.load(f)
-
-
 # First, making the dataset from training data
 
 num_features = 68
 
-'''
+
 training_dataset = dict()
 dataset_file = open("shuffled_train1.txt")
 match_list = dataset_file.readlines().copy()
@@ -32,14 +22,10 @@ for m in range(len(match_list)):
     for f in range(num_features):
         training_dataset[id][str(f+1)] = float(match_list[m].strip().split(" ")[2 + f].split(":")[-1])
 
-save_obj(training_dataset, "training_dataset")
-'''
-training_dataset = load_obj("training_dataset")
 
-boolean_list = ["2", "10", "33"]
 
 # Read the model and separate trees in xml files
-'''
+
 path2model = "model.txt"
 model_file = open(path2model)
 model_lines = model_file.readlines().copy()
@@ -70,9 +56,6 @@ for line in model_lines:
     line += "\n"
     tree_file.write(line)
 print("Separation of trees is done")
-save_obj(num_bags, "num_bags")
-'''
-num_bags = load_obj("num_bags")
 
 
 def node_extraction(node):  # a split accounts for a node
@@ -131,7 +114,7 @@ def gini_importance(node): # it must be a "C" type node
     return len(main), importance
     #return gini_children, importance
 
-'''
+
 gini = dict()
 importance = dict()
 how_many_trees = 0
@@ -201,13 +184,9 @@ for i in range(300):
         else:  # if it's a leaf node
             node = node_dict[node]["parent_node"]
             continue
-'''
-#save_obj(importance, "importance")
-importance = load_obj("importance")
 
-#save_obj(how_many_trees, "how_many_trees")
-how_many_trees = load_obj("how_many_trees")
 print("Processing ", how_many_trees, " trees are done.\n")
+
 
 
 feature_importance = dict()
