@@ -9,11 +9,11 @@ Gini importance of a feature is, on the other hand, more commonly used and accep
 
 Input:
 
-    1- training data used as input for Ranklib
+    1- training data used as input for Ranklib (.txt file)
       
-    2- random forests trained by Ranklib
+    2- random forests trained by Ranklib (.txt file)
       
-    3- number of features you have in your data (num_features = n)
+    3- number of features you have in your data (num_features = n) (integer)
     
 Note that number of features existing in the dataset may be differ from the features you (or Ranklib) actually used in the model (i.e. not all the features necessarily used in the model).
 
