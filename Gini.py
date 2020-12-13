@@ -177,9 +177,13 @@ print("Processing ", how_many_trees, " trees are done.\n")
 
 # Calculating weighted average of all the nodes split by the same feature over the entire trees
 
+features_list = list() #  this is the list of used features
+for f in importance.keys():
+    features_list.append(int(f))
+
 feature_importance = dict()
-for f in range(num_features):
-    feature = str(f+1)
+for feature in sorted(features_list):
+    feature = str(feature)
     numerator = 0
     denominator = 0
     for (count, importance_value) in importance[feature]:
