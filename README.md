@@ -5,3 +5,11 @@ Ranklib provides a feature manager that generates feature use statistics. This o
 
 Gini importance of a feature is, on the other hand, more commonly used and accepted in learning to rank researches as the criterion of the most affective features.
 
+## How to use
+
+Input:
+      1- training data used as input for Ranklib
+      2- random forests trained by Ranklib
+
+Output:
+      1- prints the gini importance for each feature
