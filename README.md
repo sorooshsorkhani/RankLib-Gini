@@ -9,10 +9,12 @@ Gini importance of a feature is, on the other hand, more commonly used and accep
 
 Input:
 
-      1- training data used as input for Ranklib
+    1- training data used as input for Ranklib
       
-      2- random forests trained by Ranklib
+    2- random forests trained by Ranklib
+      
+    3- number of features you have in your data (num_features = n)
 
 Output:
 
-      1- prints the gini importance for each feature
+    1- prints the gini importance for each feature
