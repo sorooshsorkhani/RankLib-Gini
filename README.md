@@ -15,7 +15,7 @@ Input:
       
     3- number of features you have in your data (num_features = n) (integer)
     
-Note that number of features existing in the dataset may be differ from the features you (or Ranklib) actually used in the model (i.e. not all the features necessarily used in the model).
+Note that number of features existing in the dataset may differ from the features used in the model (i.e. not all the features necessarily used in the model).
 
 Output:
 
