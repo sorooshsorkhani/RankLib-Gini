@@ -1,4 +1,3 @@
-import pickle
 import re
 import math
 import xml.etree.ElementTree as ET
