@@ -14,6 +14,8 @@ Input:
     2- random forests trained by Ranklib
       
     3- number of features you have in your data (num_features = n)
+    
+Note that number of features existing in the dataset may be differ from the features you (or Ranklib) actually used in the model (i.e. not all the features necessarily used in the model).
 
 Output:
 
