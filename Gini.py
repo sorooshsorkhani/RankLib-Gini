@@ -26,15 +26,11 @@ for m in range(len(match_list)):
     for f in range(num_features):
         training_dataset[id][str(f+1)] = float(match_list[m].strip().split(" ")[2 + f].split(":")[-1])
 
-
-
 # Read the model and separate trees in xml files
-
 
 model_file = open(path2model)
 model_lines = model_file.readlines().copy()
 i = 0
-
 
 for line in model_lines:
     line = line.rstrip()
