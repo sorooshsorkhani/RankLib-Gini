@@ -12,10 +12,12 @@ num_features = n  # number of features you have in your data
 training_dataset = dict()
 dataset_file = open("train_data.txt")
 match_list = dataset_file.readlines().copy()
+d=0
 for m in range(len(match_list)):
     q = match_list[m].strip().split(" ")[1][4:]  # q is a query
-    d = match_list[m].strip().split(" ")[-1][8:]  # d is a document
-    id = (q, d)
+    d = match_list[m].strip().split(" ")[-1][8:]  # d is a document, if you don't have document id in your dataset, comment this line and uncomment the next line
+    #d += 1
+    id = (q, str(d))
     label = match_list[m].strip().split(" ")[0]  # the rank label/score
     training_dataset[id] = dict()
     training_dataset[id]["label"] = label
