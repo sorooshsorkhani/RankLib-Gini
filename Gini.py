@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 
 # First, making the dataset from training data
 
-num_features = 68  # number of features you have in your data
+num_features = n  # number of features you have in your data
 
 
 training_dataset = dict()
