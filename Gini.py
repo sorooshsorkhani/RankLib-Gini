@@ -6,17 +6,19 @@ import xml.etree.ElementTree as ET
 
 # First, making the dataset from training data
 
-num_features = n  # number of features you have in your data
+num_features = int(input("number of features used in the dataset: "))  # number of features you have in your data
+dataset_file = open(input("path_to_training_data\data.txt: "))  # the training data used for the ranklib model
+path2model = input("path_to_model\model: ")  # the random forests model saved by RankLib
+path2trees = input("Trees_directory: ")  # the directory that trees will be saved
 
 
 training_dataset = dict()
-dataset_file = open("train_data.txt")
 match_list = dataset_file.readlines().copy()
 d=0
 for m in range(len(match_list)):
     q = match_list[m].strip().split(" ")[1][4:]  # q is a query
-    d = match_list[m].strip().split(" ")[-1][8:]  # d is a document, if you don't have document id in your dataset, comment this line and uncomment the next line
-    #d += 1
+    #d = match_list[m].strip().split(" ")[-1][8:]  # d is a document, if you don't have document id in your dataset, comment this line and uncomment the next line
+    d += 1
     id = (q, str(d))
     label = match_list[m].strip().split(" ")[0]  # the rank label/score
     training_dataset[id] = dict()
@@ -28,10 +30,11 @@ for m in range(len(match_list)):
 
 # Read the model and separate trees in xml files
 
-path2model = "model.txt"  # the random forests model saved by RankLib
+
 model_file = open(path2model)
 model_lines = model_file.readlines().copy()
 i = 0
+
 
 for line in model_lines:
     line = line.rstrip()
@@ -45,7 +48,7 @@ for line in model_lines:
         i += 1
         # if the tree is about to start, open an xml file for it
         if i % 2 == 1:
-            tree_file = open("path_to_directory_of_trees\\tree" + str(math.trunc((i+1)/2)) + ".xml", "w")
+            tree_file = open(path2trees + "\\tree" + str(math.trunc((i+1)/2)) + ".xml", "w")
             tree_file.write('<?xml version="1.0" encoding="UTF-8"?>\n')
     # if the tree is about to end, close the xml file
     if re.search("^</ensemble>", line):
@@ -120,9 +123,9 @@ importance = dict()
 how_many_trees = 0
 for i in range(300):
     mark = 0
-    print("tree" + str(i + 1))
+    print("Parsing tree" + str(i + 1))
 
-    tree1 = ET.parse("path_to_directory_of_trees\\tree" + str(i + 1) + ".xml")
+    tree1 = ET.parse(path2trees + "\\tree" + str(i + 1) + ".xml")
     tree1_root = tree1.getroot()
 
     root_parent = tree1_root[0][0]
