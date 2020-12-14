@@ -21,11 +21,11 @@ Number of features you have in your dataset. Note that number of features existi
 
     path_to_training_data\data.txt: <train_data.txt>
 
-The data used for training the ranklib model
+The data used for training the ranklib model.
       
     path_to_model\model.txt: <model.txt>
     
-The random forests model saved by RankLib
+The random forests model saved by RankLib.
     
     Trees_directory: <trees>
 
@@ -33,7 +33,7 @@ The directory that trees will be saved. I suggest creating a new directory for t
 
     output file name (e.g. gini.txt): <gini.txt>
     
-Choose a name or directory(optional) for the output
+Choose a name or directory(optional) for the output.
 
 ### Run in IDE
-You can also use the provided code to run (or change) it in an IDE
+You can also use the provided code to run (or change) it in an IDE.
