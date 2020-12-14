@@ -7,6 +7,7 @@ Gini importance of a feature is, on the other hand, more commonly used and accep
 
 ## How to use
 
+### Run in Terminal
 You can simply run the code in terminal by:
      
      python Gini.py
@@ -34,4 +35,5 @@ The directory that trees will be saved. I suggest creating a new directory for t
     
 Choose a name or directory(optional) for the output
 
-
+### Run in IDE
+You can also use the provided code to run it with an IDE
