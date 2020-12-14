@@ -36,4 +36,4 @@ The directory that trees will be saved. I suggest creating a new directory for t
 Choose a name or directory(optional) for the output
 
 ### Run in IDE
-You can also use the provided code to run it in an IDE
+You can also use the provided code to run (or change) it in an IDE
