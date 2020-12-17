@@ -1,3 +1,4 @@
+import sys
 import re
 import math
 import xml.etree.ElementTree as ET
@@ -5,11 +6,13 @@ import xml.etree.ElementTree as ET
 
 # First, making the dataset from training data
 
-num_features = int(input("number of features used in the dataset: "))  # number of features you have in your data
-dataset_file = open(input("path_to_training_data\data.txt: "))  # the data used for training the ranklib model
-path2model = input("path_to_model\model.txt: ")  # the random forests model saved by RankLib
-path2trees = input("Trees_directory: ")  # the directory that trees will be saved
-gini_file_name = input("output file (e.g. gini.txt): ")  # choose a name or directory(optional) for the output
+num_features = int(sys.argv[1])  # number of features you have in your data
+dataset_file = open(sys.argv[2])  # the data used for training the ranklib model
+model_file = open(sys.argv[3])  # the random forests model saved by RankLib
+path2trees = sys.argv[4]  # the directory that trees will be saved
+gini_file_name = sys.argv[5]  # choose a name or directory(optional) for the output
+
+
 
 
 training_dataset = dict()
@@ -27,7 +30,6 @@ for m in range(len(match_list)):
 
 # Read the model and separate trees in xml files
 
-model_file = open(path2model)
 model_lines = model_file.readlines().copy()
 i = 0
 
