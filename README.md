@@ -17,7 +17,9 @@ An example with the dataset and model provided in this repository:
     python Gini.py 68 train_data.txt model.txt trees gini.txt
 
 ### Input Description
-Markup:* **num_features**: The number of features exist in your training data. Note that this is not necessarily equal to number of features used in the model.
+Markup:
+
+* **num_features**: The number of features exist in your training data. Note that this is not necessarily equal to number of features used in the model.
 
 * **training data**: The training data used for the ranklib model.
 
