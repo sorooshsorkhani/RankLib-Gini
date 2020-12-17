@@ -5,7 +5,7 @@ Ranklib provides a feature manager that generates feature use statistics. This o
 
 Gini importance of a feature is, on the other hand, more commonly used and accepted in learning to rank researches as the criterion of the most affective features.
 
-## How to use
+## How to Use
 
 ### Run
 You can run the code in terminal by putting the inputs in the same order as below:
@@ -16,13 +16,13 @@ An example with the dataset and model provided in this repository:
      
     python Gini.py 68 train_data.txt model.txt trees gini.txt
 
-### Input
-num_features: The number of features exist in your training data. Note that this is not necessarily equal to number of features used in the model.
+### Input Description
+**num_features**: The number of features exist in your training data. Note that this is not necessarily equal to number of features used in the model.
 
-training data: The training data used for the ranklib model.
+**training data**: The training data used for the ranklib model.
 
-RF model: The model created by ranklib.
+**RF model**: The model created by ranklib.
 
-trees directory: The directory that you want to save your trees. You may need an empty directory as usually many trees will be created.
+**trees directory**: The directory that you want to save your trees. You may need an empty directory as usually many trees will be created.
 
-output file: A .txt file to save the results of the gini importance.
+**output file**: A .txt file to save the results of the gini importance.
