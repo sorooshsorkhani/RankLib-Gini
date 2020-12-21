@@ -1,3 +1,7 @@
+"""
+Creator: Soroosh Sorkhani
+Email: soroosh.sorkhani@gmail.com or soroosh.sorkhani@ryerson.ca
+"""
 import sys
 import re
 import math
