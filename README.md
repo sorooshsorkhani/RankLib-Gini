@@ -26,3 +26,7 @@ An example with the dataset and model provided in this repository:
 * **trees directory**: The directory that you want to save your trees. You may need an empty directory as usually many trees will be created.
 
 * **output file**: A .txt file to save the results of the gini importance.
+
+
+## Sponsor
+Laboratory for Systems, Software and Semantics ([LS3](http://ls3.rnet.ryerson.ca/)), Ryerson University, ON, Canada
