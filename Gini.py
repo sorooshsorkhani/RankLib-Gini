@@ -3,25 +3,53 @@ Creator: Soroosh Sorkhani
 Email: soroosh.sorkhani@gmail.com or soroosh.sorkhani@ryerson.ca
 """
 import sys
+from os import path
 import re
 import math
 import xml.etree.ElementTree as ET
 
 
-# First, making the dataset from training data
+# First, check if the inputs are correct
 
-num_features = int(sys.argv[1])  # number of features you have in your data
-dataset_file = open(sys.argv[2])  # the data used for training the ranklib model
-model_file = open(sys.argv[3])  # the random forests model saved by RankLib
-path2trees = sys.argv[4]  # the directory that trees will be saved
-gini_file_name = sys.argv[5]  # choose a name or directory(optional) for the output
+try:
+    num_features = int(sys.argv[1])  # number of features you have in your data
+except:
+    print('number of features must be an integer greater than 4')  # because ranklib model uses at least 4 features
+    sys.exit()
+try:
+    dataset_file = open(sys.argv[2])  # the data used for training the ranklib model
+except:
+    print('dataset is missing')
+    sys.exit()
+try:
+    model_file = open(sys.argv[3])  # the random forests model saved by RankLib
+except:
+    print('model is missing')
+    sys.exit()
+try:
+    path2trees = sys.argv[4]  # the directory that trees will be saved
+except:
+    print("path to trees is missing")
+    sys.exit()
+if not path.exists(path2trees):
+    print("path to trees doesn't exist")
+    sys.exit()
+try:
+    gini_file_name = sys.argv[5]  # choose a name or directory(optional) for the output
+except:
+    print("the output file is not determined")
+    sys.exit()
+if gini_file_name.find(".txt") == -1:
+    print("the output file must be a .txt file")
+    sys.exit()
 
 
-
+# making the dataset from training data
+# the dataset format of ranklib is read and saved as a dictionary here:
 
 training_dataset = dict()
 match_list = dataset_file.readlines().copy()
-d=0
+d = 0  # helps to distinguish between each line (query-document pair) in the dataset
 for m in range(len(match_list)):
     q = match_list[m].strip().split(" ")[1][4:]  # q is a query
     d += 1  # d is assigned to a document
@@ -32,7 +60,7 @@ for m in range(len(match_list)):
     for f in range(num_features):
         training_dataset[id][str(f+1)] = float(match_list[m].strip().split(" ")[2 + f].split(":")[-1])
 
-# Read the model and separate trees in xml files
+# Read the model and save trees in separated xml files
 
 model_lines = model_file.readlines().copy()
 i = 0
@@ -64,7 +92,7 @@ for line in model_lines:
 print("Separation of trees is done")
 
 
-def node_extraction(node):  # a split accounts for a node
+def node_extraction(node):  # reading the information for each node from the parsed tree
     dict_help = dict()
     dict_help[node] = dict()
     if node.find("output") is None:
@@ -102,27 +130,34 @@ def gini_importance(node):  # it must be a "C" type node
     main_gini = 0
     for i in main_dict.keys():
         main_gini += (main_dict[i]/len(main))**2
-    main_gini = 1 - main_gini
+    main_gini = 1 - main_gini  # gini impurity of the node
 
     left_gini = 0
     for i in letf_dict.keys():
         left_gini += (letf_dict[i]/len(left))**2
-    left_gini = 1 - left_gini
+    left_gini = 1 - left_gini  # gini impurity of the left child
 
     right_gini = 0
     for i in right_dict.keys():
         right_gini += (right_dict[i]/len(right))**2
-    right_gini = 1 - right_gini
+    right_gini = 1 - right_gini  # gini impurity of the right child
 
     gini_children = (len(left)*left_gini + len(right)*right_gini)/(len(left)+len(right))
-    importance = main_gini - gini_children
+    importance = main_gini - gini_children  # the change in gini impurity after the split = importance
 
     return len(main), importance
 
+# steps are:
+# parsing a tree
+# read nodes and find out the portion of data that go to the nodes
+# reading nodes include identifying their parent node and child nodes (if applicable)
+# after going down the tree and reading all the nodes:
+# go back up the tree and calculate gini for each feature in a split (node)
+# the set of gini importances of a feature is saved as a dictionary called "importance"
 
 importance = dict()
 how_many_trees = 0
-for i in range(300):
+for i in range(int(num_bags)):
     mark = 0
     print("Parsing tree" + str(i + 1))
 
@@ -139,6 +174,8 @@ for i in range(300):
     while True:
         if node not in node_dict.keys():  # if the node is not in the node-set
             node_dict = {**node_dict, **node_extraction(node)}  # read the node
+        else:
+            pass
         if node_dict[node]["node_type"] == "C":  # if the node is not a leaf node
             if node[2] not in node_dict.keys():  # if the left child is not in the node-set, read it
                 parent = node
@@ -173,7 +210,7 @@ for i in range(300):
                         how_many_trees += 1
                     break
                 continue
-        else:  # if it's a leaf node
+        else:  # if it's a leaf node, go back to the parent node
             node = node_dict[node]["parent_node"]
             continue
 
