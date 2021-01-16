@@ -8,6 +8,8 @@ Gini importance of a feature is, on the other hand, more commonly used and accep
 ## How to Use
 
 ### Run
+You will need python3 to run this code. The model used in this code is created by ranklib-2.1 or higher versions.
+
 You can run the code in terminal by putting the inputs in the same order as below:
                  
     python Gini.py <num_features> <path_to\training_data> <path_to\RF_model> <trees directory> <output_file>
