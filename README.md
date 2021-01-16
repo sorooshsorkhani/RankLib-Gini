@@ -14,7 +14,7 @@ You can run the code in terminal by putting the inputs in the same order as belo
 
 An example with the dataset and model provided in this repository:
      
-    python Gini.py 68 train_data.txt model.txt trees gini.txt
+    python Gini.py 67 train_data.txt model.txt trees gini.txt
 
 This program is also tested on MQ2008 from the [LETOR](https://www.microsoft.com/en-us/research/project/letor-learning-rank-information-retrieval/?from=http%3A%2F%2Fresearch.microsoft.com%2Fen-us%2Fum%2Fbeijing%2Fprojects%2Fletor%2Fletor4dataset.aspx) 4.0 dataset.
 
