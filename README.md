@@ -1,5 +1,5 @@
 # RankLib-Gini
-Gini feature importance for [RankLib](https://sourceforge.net/p/lemur/wiki/RankLib/) random forests:
+Gini feature importance for [RankLib](https://sourceforge.net/p/lemur/wiki/RankLib/) random forest:
 
 Ranklib provides a feature manager that generates feature use statistics. This only provides the frequency of each feature used in the learning to rank model to identify which feature contributes more in the model. The importance or efficacy of the feature, however, might not be correlated with its frequency.
 
