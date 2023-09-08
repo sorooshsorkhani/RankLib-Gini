@@ -33,4 +33,4 @@ This program is also tested on MQ2008 from the [LETOR](https://www.microsoft.com
 
 
 ## Sponsor
-Laboratory for Systems, Software and Semantics ([LS3](http://ls3.rnet.ryerson.ca/)), Ryerson University, ON, Canada
+Laboratory for Systems, Software and Semantics ([LS3](https://ls3.rnet.torontomu.ca/)), Toronto Metropolitan University, ON, Canada
